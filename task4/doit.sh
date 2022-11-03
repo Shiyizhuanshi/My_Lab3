@@ -15,3 +15,4 @@ obj_dir/Vtop
 
 #    ls /dev/tty.u*
 #    /dev/tty.usbserial-110
+#    /dev/ttyS3

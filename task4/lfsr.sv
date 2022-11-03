@@ -12,7 +12,7 @@ module lfsr (
         if (rst)
             sreg <= 7'b1;
         else if (en)
-            sreg <= {sreg[6:1], sreg[1] ^ sreg[5]};
+            sreg <= {sreg[6:1], sreg[1] ^ (sreg[5] ^sreg[7]) };
         else 
             sreg <= sreg;
 

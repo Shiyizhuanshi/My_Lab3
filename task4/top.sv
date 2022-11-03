@@ -14,7 +14,7 @@ logic cmd_delay;
 logic tick;
 logic time_out;
 logic mux_out;
-logic [4:1] k;
+logic [7:1] k;
 
 assign test = time_out;
 
@@ -25,9 +25,9 @@ f1_fsm fsm(
     .clk(clk),
     .rst(rst),
     .trigger(trigger),
+    .en(mux_out),
     .cmd_delay(cmd_delay),
     .cmd_seq(cmd_seq),
-    .en(mux_out),
     .data_out(data_out)
 );
 

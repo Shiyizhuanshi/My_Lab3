@@ -28,7 +28,7 @@ int main(int argc, char **argv, char **env) {
   top->clk = 1;
   top->rst = 0;
   top->trigger = 0;
-  top->N = 3;
+  top->N = 25;
   
   // run simulation for MAX_SIM_CYC clock cycles
   for (simcyc=0; simcyc<MAX_SIM_CYC; simcyc++) {
@@ -38,8 +38,7 @@ int main(int argc, char **argv, char **env) {
       top->clk = !top->clk;
       top->eval ();
     }
-
-
+    top->N = vbdValue();
     vbdBar(top->data_out & 0xFF);
     vbdHex(1, top->test & 0xF);
     // vbdHex(2, (top->random >> 4) & 0xF);
@@ -50,10 +49,12 @@ int main(int argc, char **argv, char **env) {
     //   lights = lights ^ 0xFF;
     // }
     // set up input signals of testbench
+
     top->rst = (simcyc < 2);    // assert reset for 1st cycle
-    // vbdSetMode(1);
     top->trigger = vbdFlag();
     vbdCycle(simcyc);
+    
+
 
     if (Verilated::gotFinish())  exit(0);
   }

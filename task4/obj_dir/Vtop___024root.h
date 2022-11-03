@@ -23,12 +23,12 @@ class Vtop___024root final : public VerilatedModule {
     CData/*0:0*/ top__DOT__cmd_delay;
     CData/*0:0*/ top__DOT__tick;
     CData/*0:0*/ top__DOT__time_out;
+    CData/*4:0*/ top__DOT__second__DOT__count;
     CData/*6:0*/ top__DOT__lfsr1__DOT__sreg;
-    CData/*3:0*/ top__DOT__one_delay__DOT__count;
+    CData/*6:0*/ top__DOT__one_delay__DOT__count;
     CData/*6:0*/ __Vdly__top__DOT__lfsr1__DOT__sreg;
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__rst;
-    SData/*15:0*/ top__DOT__second__DOT__count;
     IData/*31:0*/ top__DOT__fsm__DOT__current_state;
     IData/*31:0*/ top__DOT__fsm__DOT__next_state;
     IData/*31:0*/ top__DOT__one_delay__DOT__current_state;

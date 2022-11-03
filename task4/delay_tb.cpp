@@ -40,10 +40,11 @@ int main(int argc, char **argv, char **env) {
     }
 
     // Display toggle neopixel
-    if (top->time_out) {
-      vbdBar(lights);
-      lights = lights ^ 0xFF;
-    }
+    // if (top->time_out) {
+    //   vbdBar(lights);
+    //   lights = lights ^ 0xFF;
+    // }
+    vbdHex(1, top->time_out & 0xF);
     // set up input signals of testbench
     top->rst = (simcyc < 2);    // assert reset for 1st cycle
     top->trigger = vbdFlag();
