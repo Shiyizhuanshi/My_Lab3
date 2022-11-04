@@ -29,6 +29,7 @@ int main(int argc, char **argv, char **env) {
   top->rst = 0;
   top->trigger = 0;
   top->N = 25;
+  int state = 0;
   
   // run simulation for MAX_SIM_CYC clock cycles
   for (simcyc=0; simcyc<MAX_SIM_CYC; simcyc++) {
@@ -40,7 +41,7 @@ int main(int argc, char **argv, char **env) {
     }
     top->N = vbdValue();
     vbdBar(top->data_out & 0xFF);
-    vbdHex(1, top->test & 0xF);
+    // vbdHex(1, top->test & 0xF);
     // vbdHex(2, (top->random >> 4) & 0xF);
 
     // Display toggle neopixel
@@ -50,11 +51,28 @@ int main(int argc, char **argv, char **env) {
     // }
     // set up input signals of testbench
 
+
+    if (state == 1){
+      vbdInitWatch();
+      while(vbdFlag() == 0){}
+              // ++++ Send count to Vbuddy
+      vbdHex(4, (int(vbdElapsed()) >> 16) & 0xF);
+      vbdHex(3, (int(vbdElapsed()) >> 8) & 0xF);
+      vbdHex(2, (int(vbdElapsed()) >> 4) & 0xF);
+      vbdHex(1, int(vbdElapsed()) & 0xF);
+    } 
+
+
+    if (top->test == 1){
+      state = 1;
+    }
+    if (top->test == 0){
+      state =0;
+    }
+
     top->rst = (simcyc < 2);    // assert reset for 1st cycle
     top->trigger = vbdFlag();
     vbdCycle(simcyc);
-    
-
 
     if (Verilated::gotFinish())  exit(0);
   }
